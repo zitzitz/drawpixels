@@ -607,7 +607,7 @@ static void draw_line(int x0, int y0, int x1, int y1, int r, int g, int b, int a
 
   for (;;)
   { /* loop */
-    mixpixel(x0, y0, r, g, b, a);
+    putpixel(x0, y0, r, g, b, a);
     if (x0 == x1 && y0 == y1)
       break;
     e2 = 2 * err;
@@ -713,7 +713,7 @@ static void draw_line_vu(int x0, int y0, int x1, int y1, int r, int g, int b, in
     float intery = y0 + grad;
     for (int i = -w_min; i < w_max; i++)
     {
-      mixpixel(x0, y0 + i, r, g, b, a);
+      putpixel(x0, y0 + i, r, g, b, a);
     }
     float intens = 0;
     int ipart = 0;
@@ -721,17 +721,17 @@ static void draw_line_vu(int x0, int y0, int x1, int y1, int r, int g, int b, in
     {
       intens = FPart(intery) * 255;
       ipart = IPart(intery);
-      mixpixel(x, ipart - w_min, r, g, b, (255 - intens) * na);
+      putpixel(x, ipart - w_min, r, g, b, (255 - intens) * na);
       for (int i = -w_min + 1; i < w_max; i++)
       {
-        mixpixel(x, ipart + i, r, g, b, a);
+        putpixel(x, ipart + i, r, g, b, a);
       }
-      mixpixel(x, ipart + w_max, r, g, b, intens * na);
+      putpixel(x, ipart + w_max, r, g, b, intens * na);
       intery += grad;
     }
     for (int i = -w_min; i < w_max; i++)
     {
-      mixpixel(x1, y1 + i, r, g, b, a);
+      putpixel(x1, y1 + i, r, g, b, a);
     }
   }
   else
@@ -751,7 +751,7 @@ static void draw_line_vu(int x0, int y0, int x1, int y1, int r, int g, int b, in
     float interx = x0 + grad;
     for (int i = -w_min; i < w_max; i++)
     {
-      mixpixel(x0 + i, y0, r, g, b, a);
+      putpixel(x0 + i, y0, r, g, b, a);
     }
     float intens = 0;
     int ipart = 0;
@@ -759,17 +759,17 @@ static void draw_line_vu(int x0, int y0, int x1, int y1, int r, int g, int b, in
     {
       intens = FPart(interx) * 255;
       ipart = IPart(interx);
-      mixpixel(ipart - w_min, y, r, g, b, (255 - intens) * na);
+      putpixel(ipart - w_min, y, r, g, b, (255 - intens) * na);
       for (int i = -w_min + 1; i < w_max; i++)
       {
-        mixpixel(ipart + i, y, r, g, b, a);
+        putpixel(ipart + i, y, r, g, b, a);
       }
-      mixpixel(ipart + w_max, y, r, g, b, intens * na);
+      putpixel(ipart + w_max, y, r, g, b, intens * na);
       interx += grad;
     }
     for (int i = -w_min; i < w_max; i++)
     {
-      mixpixel(x1 + i, y1, r, g, b, a);
+      putpixel(x1 + i, y1, r, g, b, a);
     }
   }
 }
